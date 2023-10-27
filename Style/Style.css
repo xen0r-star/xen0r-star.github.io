@@ -1,0 +1,28 @@
+body { 
+    margin: 0; 
+    position: relative;
+}
+
+#loading {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+    z-index: 100;
+    display:block;
+    background-color: rgb(255, 255, 255);
+}
+
+#Icon{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 20px;
+}
+
+#Icon > svg {
+    width: 3vw;
+    margin: 0 10px;
+    cursor: pointer;
+    transition: all ease-in-out 4s;
+}
