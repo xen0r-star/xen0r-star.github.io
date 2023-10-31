@@ -1,17 +1,28 @@
 let Bar = document.getElementById('Bar');
 let Progress = document.getElementById('Progress');
-var ValueProgressBar = 1100000;
+Bar.style.width = 0;
 
-var i = -1;
-function ProgressBarLoading(){
-    if (i < ValueProgressBar) {
-        i++;
+function ProgressBarLoading(ValueProgressBar) {
+    let i = parseInt(Bar.style.width);
+    let intervalIDProgressBarLoading;
 
-        Bar.style.width = i + "%";
-        Progress.innerText = Bar.style.width;
-    } else {
-        clearInterval(intervalIDProgressBarLoading);
+    function ProgressBar() {
+        if (i < ValueProgressBar && i < 100) {
+            i++;
+            Bar.style.width = i + "%";
+            Progress.innerText = Bar.style.width;
+        } else if (i >= 100) {
+            clearInterval(intervalIDProgressBarLoading);
+            
+            setTimeout(function() {
+                document.getElementById('Loading').style.animation = "LoadingSlip 2s forwards";
+            }, 1000);
+        } else {
+            clearInterval(intervalIDProgressBarLoading);
+        }
     }
+
+    intervalIDProgressBarLoading = setInterval(ProgressBar, 100);
 }
 
-intervalIDProgressBarLoading = setInterval(ProgressBarLoading, 100);
+ProgressBarLoading(100);
