@@ -22,7 +22,7 @@ function ProgressBarLoading(ValueProgressBar) {
         }
     }
 
-    intervalIDProgressBarLoading = setInterval(ProgressBar, 100);
+    intervalIDProgressBarLoading = setInterval(ProgressBar, 20);
 }
 
 ProgressBarLoading(100);
