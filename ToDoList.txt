@@ -1,6 +1,0 @@
-A faire
-
-- une boucle dans index.js pour qu'il importe tout les fichier automatiquement 
-- mettre l'html de index.html dans Template et les importer dans index.html (index.html, Template/, webpack.config.js)
-- configurer three.js
-- pouvoir mettre des fichier test
