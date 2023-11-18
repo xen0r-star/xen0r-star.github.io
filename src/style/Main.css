@@ -110,7 +110,7 @@ canvas {
     margin: 0 20px 0 0;
     top: -5vw;
     cursor: pointer;
-    z-index: 100;
+    z-index: 200;
 }
 
 @keyframes BulbClicked {

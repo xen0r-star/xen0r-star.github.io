@@ -15,19 +15,6 @@
         }
       },
       {
-        "key": 1699014986789,
-        "children": [],
-        "todo": {
-          "content": "mettre l'html de index.html dans Template et les importer dans index.html (index.html, Template/, webpack.config.js)",
-          "id": 1699014986789,
-          "level": "danger",
-          "done": true,
-          "start": 1699014986789,
-          "focus": false,
-          "end": 1699042615672
-        }
-      },
-      {
         "key": 1699014996268,
         "children": [],
         "todo": {
@@ -37,44 +24,9 @@
           "done": false,
           "start": 1699014996268
         }
-      },
-      {
-        "key": 1699015002932,
-        "children": [],
-        "todo": {
-          "content": "pouvoir mettre des fichier test",
-          "id": 1699015002932,
-          "level": "default",
-          "done": false,
-          "start": 1699015002932
-        }
-      },
-      {
-        "key": 1699042646120,
-        "children": [],
-        "todo": {
-          "content": "Probléme avec main.js",
-          "id": 1699042646120,
-          "level": "default",
-          "done": false,
-          "start": 1699042646120
-        }
-      },
-      {
-        "key": 1699042675064,
-        "children": [],
-        "todo": {
-          "content": "favicon.ico",
-          "id": 1699042675064,
-          "level": "default",
-          "done": false,
-          "start": 1699042675064
-        }
       }
     ],
-    "expandKeys": [
-      1699015002932
-    ],
+    "expandKeys": [],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
     "virtual": false,
@@ -84,7 +36,7 @@
     "autoSort": false,
     "showEndTime": false,
     "simpleMode": false,
-    "lang": "fr",
-    "version": "1699042694333"
+    "lang": "en",
+    "version": "1700348179031"
   }
 }
