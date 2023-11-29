@@ -1,12 +1,8 @@
-import '@/font/LilitaOne-Regular.ttf';
+// Importation de tous les fichiers
+function importAll(r) {
+  r.keys().forEach(r);
+}
 
-import '@/style/main.css';
-import '@/style/loading.css';
-import '@/style/supplement.css';
-
-
-import '@/js/main.js';
-import '@/js/Loading.js';
-
-import '@/style/Bulb.js';
-import '@/style/Other.js';
+importAll(require.context('@/js/', true, /\.*$/));
+importAll(require.context('@/style/', true, /\.*$/));
+importAll(require.context('@/font/', true, /\.*$/));

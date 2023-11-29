@@ -42,23 +42,7 @@ canvas {
     cursor: pointer;
 }
 
-#IconGithub:hover {
-    transform: scaleX(-1);
-}
-
-#IconTwitter:hover {
-    transform: scaleX(-1);
-}
-
-#IconX:hover {
-    transform: scaleX(-1);
-}
-
-#IconInstagram:hover {
-    transform: scaleX(-1);
-}
-
-#IconTikTok:hover {
+#IconGithub:hover, #IconTwitter:hover, #IconInstagram:hover, #IconTikTok:hover {
     transform: scaleX(-1);
 }
 
@@ -96,7 +80,7 @@ canvas {
     }
 
     100% {
-        transform: translate(0, 0)
+        transform: none
     }
 }
 

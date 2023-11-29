@@ -6,6 +6,7 @@
   display: block;
   background-color: var(--Background);
   translate: all 1s ease-in-out;
+  top: 0;
 }
 
 @keyframes LoadingSlip {
@@ -14,7 +15,7 @@
   }
 
   100% {
-    transform: translateY(-100%);
+    transform: translateY(-100vh);
   }
 }
 

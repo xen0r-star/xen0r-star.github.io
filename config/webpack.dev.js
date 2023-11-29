@@ -1,6 +1,8 @@
-const {merge} = require('webpack-merge')
-const common = require('./webpack.config')
+const {merge} = require('webpack-merge');
+const common = require('./webpack.config');
 
+
+// Configuration
 module.exports = merge(common, {
   mode: 'development',
   devtool: 'eval',
@@ -11,6 +13,7 @@ module.exports = merge(common, {
     compress: true,
     hot: true,
     port: 8080,
+    watchFiles: ['src/**/*.*', 'src/*.*'],
   },
 
   module: {
@@ -29,4 +32,4 @@ module.exports = merge(common, {
       },
     ],
   },
-})
+});

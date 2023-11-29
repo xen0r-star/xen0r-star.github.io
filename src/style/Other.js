@@ -49,7 +49,7 @@ function RestartTwitterToX() {
         
             setTimeout(function() {
                 clearInterval(intervalIDTwitter);
-                document.getElementById('IconTwitterLien').innerHTML = '<svg id="IconX" style="width: 2.5vw; height: 2.5vw; transform: translate(0, 150%);" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><path style="transition: all ease-in-out .25s;" d="M0.312077 4L49.7314 70.0784L0 123.803H11.1926L54.7323 76.7663L89.9113 123.803H128L75.8001 54.0077L122.09 4H110.897L70.7992 47.3198L38.4008 4H0.312077ZM16.7716 12.2444H34.2696L111.538 115.557H94.0399L16.7716 12.2444Z" fill="var(--Element)"/></svg>';
+                document.getElementById('IconTwitterLien').innerHTML = '<svg id="IconX" style="width: 2.5vw; height: 2.5vw; transition: all ease-in-out .25s;" viewBox="0 0 128 128" fill="none" xmlns="http://www.w3.org/2000/svg"><path style="transition: all ease-in-out .25s;" d="M0.312077 4L49.7314 70.0784L0 123.803H11.1926L54.7323 76.7663L89.9113 123.803H128L75.8001 54.0077L122.09 4H110.897L70.7992 47.3198L38.4008 4H0.312077ZM16.7716 12.2444H34.2696L111.538 115.557H94.0399L16.7716 12.2444Z" fill="var(--Element)"/></svg>';
                 document.getElementById('IconX').style.animation = "TwitterToX3 .5s forwards";
             
             }, TimeAnimationTwitter);

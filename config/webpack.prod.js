@@ -7,6 +7,7 @@ const common = require('./webpack.config')
 const paths = require('./paths')
 
 
+// Configuration
 module.exports = merge(common, {
     mode: 'production',
     devtool: false,
