@@ -42,9 +42,9 @@ canvas {
     cursor: pointer;
 }
 
-#IconGithub:hover, #IconTwitter:hover, #IconInstagram:hover, #IconTikTok:hover {
+/* #IconGithub:hover, #IconTwitter:hover, #IconInstagram:hover, #IconTikTok:hover {
     transform: scaleX(-1);
-}
+} */
 
 #IconTwitterDiv {
     width: 2.5vw; 

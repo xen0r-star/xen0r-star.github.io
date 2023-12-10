@@ -2,19 +2,6 @@
   "todotree": {
     "tree": [
       {
-        "key": 1699014963765,
-        "children": [],
-        "todo": {
-          "content": "une boucle dans index.js pour qu'il importe tout les fichier automatiquement",
-          "id": 1699014963765,
-          "level": "default",
-          "done": false,
-          "start": 1699014963765,
-          "focus": false,
-          "end": 1699015047293
-        }
-      },
-      {
         "key": 1699014996268,
         "children": [],
         "todo": {
@@ -30,6 +17,7 @@
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
     "virtual": false,
+    "timelines": [],
     "showLine": false,
     "playFontSize": 24,
     "title": "ToDoList",
@@ -37,6 +25,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1700348179031"
+    "version": "1701612858733"
   }
 }

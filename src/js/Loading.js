@@ -2,6 +2,8 @@ let Bar = document.getElementById('Bar');
 let Progress = document.getElementById('Progress');
 Bar.style.width = 0;
 
+let Speed = 1
+
 function ProgressBarLoading(ValueProgressBar) {
     let i = parseInt(Bar.style.width);
     let intervalIDProgressBarLoading;
@@ -22,7 +24,7 @@ function ProgressBarLoading(ValueProgressBar) {
         }
     }
 
-    intervalIDProgressBarLoading = setInterval(ProgressBar, 20);
+    intervalIDProgressBarLoading = setInterval(ProgressBar, Speed);
 }
 
 ProgressBarLoading(100);

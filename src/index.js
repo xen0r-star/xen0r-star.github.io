@@ -5,4 +5,3 @@ function importAll(r) {
 
 importAll(require.context('@/js/', true, /\.*$/));
 importAll(require.context('@/style/', true, /\.*$/));
-importAll(require.context('@/font/', true, /\.*$/));
