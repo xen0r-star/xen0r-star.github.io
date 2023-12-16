@@ -1,9 +1,12 @@
 import * as THREE from 'three';
 
-export function updateCamera(object, camera, distance, decalage, velocity, angularVelocity) {
+export function updateCamera(object, objectBody, camera, distance, decalage, velocity, angularVelocity) {
     // Positionner objet
     object.translateY(velocity.y);
     object.rotateZ(angularVelocity);
+
+    objectBody.position.copy(object.position);
+    objectBody.quaternion.copy(object.quaternion);
 
     // Calculer nouvelle position camera
     const characterPosition = object.position.clone();

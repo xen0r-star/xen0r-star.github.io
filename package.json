@@ -12,6 +12,7 @@
   "license": "ISC",
   "dependencies": {
     "acorn": "^8.11.2",
+    "cannon": "^0.6.2",
     "copy-webpack-plugin": "^11.0.0",
     "fs": "^0.0.1-security",
     "http-server": "^14.1.1",
