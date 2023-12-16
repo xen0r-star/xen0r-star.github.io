@@ -4,4 +4,5 @@ function importAll(r) {
 }
 
 importAll(require.context('@/js/', true, /\.*$/));
+importAll(require.context('@/three/', true, /\.*$/));
 importAll(require.context('@/style/', true, /\.*$/));
