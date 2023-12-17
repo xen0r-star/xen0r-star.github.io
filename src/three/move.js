@@ -1,25 +1,24 @@
 import * as THREE from 'three';
 
-export function updateCamera(object, objectBody, camera, distance, decalage, velocity, angularVelocity) {
+export function updateCamera(object, camera, distance, decalage) {
     // Positionner objet
-    object.translateY(velocity.y);
-    object.rotateZ(angularVelocity);
+    object.id.translateY(object.velocity.y);
+    object.id.rotateZ(object.angularVelocity);
 
-    objectBody.position.copy(object.position);
-    objectBody.quaternion.copy(object.quaternion);
+    object.body.position.copy(object.id.position);
+    object.body.quaternion.copy(object.id.quaternion);
 
     // Calculer nouvelle position camera
-    const characterPosition = object.position.clone();
+    const characterPosition = object.id.position.clone();
     const offset = new THREE.Vector3(0, decalage, distance);
     const cameraPosition = characterPosition.clone().add(offset);
 
     // Positionner camera
-    camera.position.copy(cameraPosition);
-    camera.lookAt(characterPosition);
+    camera.id.position.copy(cameraPosition);
+    camera.id.lookAt(characterPosition);
 }
 
 export function moveObject(move, keysMouve) {
-
     const onKeyDown = (event) => {
         switch (event.key) {
             case keysMouve.Down:
@@ -53,3 +52,12 @@ export function moveObject(move, keysMouve) {
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("keyup", onKeyUp);
 }
+
+export function respawn(object, min, max) {
+    if (object.id.position.z < min || object.id.position.z > max) {
+        object.id.position.set(object.spawn.x, object.spawn.y, object.spawn.z);
+        object.id.rotation.set(0, 0, 0)
+        characterBody.velocity.set(0, 0, 0);
+        characterBody.angularVelocity.set(0, 0, 0);
+    }
+  }
