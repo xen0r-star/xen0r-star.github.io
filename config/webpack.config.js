@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 const path = require('path')
 const paths = require('./paths')
@@ -23,6 +24,18 @@ module.exports = {
   },
 
   plugins: [
+    new CopyWebpackPlugin({
+      patterns: [
+        {
+          from: paths.public,
+          to: paths.build,
+          globOptions: {
+            ignore: ['**/*.blend'],
+          },
+        },
+      ],
+    }),
+
     new HtmlWebpackPlugin({
       template: paths.src + '/index.html',
       inject: 'body',
@@ -45,6 +58,10 @@ module.exports = {
     rules: [
       { test: /\.js$/, use: ['babel-loader'] },
 
+      { test: /\.(gltf)$/,
+        loader: "gltf-loader",
+      },
+
       { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
 
       { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
@@ -55,8 +72,8 @@ module.exports = {
     modules: [paths.src, 'node_modules'],
     extensions: ['.js', '.jsx', '.json'],
     alias: {
-      '@': paths.src,
-      assets: paths.public,
+      '@src': paths.src,
+      '@public' : paths.public
     },
   },
 }

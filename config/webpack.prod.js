@@ -13,7 +13,7 @@ module.exports = merge(common, {
     devtool: false,
 
     output: {
-        path: paths.public,
+        path: paths.build,
         filename: 'js/[name].js',
         publicPath: '/',
     },

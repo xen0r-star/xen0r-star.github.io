@@ -3,6 +3,6 @@ function importAll(r) {
   r.keys().forEach(r);
 }
 
-importAll(require.context('@/js/', true, /\.*$/));
-importAll(require.context('@/three/', true, /\.*$/));
-importAll(require.context('@/style/', true, /\.*$/));
+importAll(require.context('@src/js/', true, /\.*$/));
+importAll(require.context('@src/three/', true, /\.*$/));
+importAll(require.context('@src/style/', true, /\.*$/));

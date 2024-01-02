@@ -57,7 +57,7 @@ export function respawn(object, min, max) {
     if (object.id.position.z < min || object.id.position.z > max) {
         object.id.position.set(object.spawn.x, object.spawn.y, object.spawn.z);
         object.id.rotation.set(0, 0, 0)
-        characterBody.velocity.set(0, 0, 0);
-        characterBody.angularVelocity.set(0, 0, 0);
+        object.velocity.set(0, 0, 0);
+        object.angularVelocity = 0;
     }
   }

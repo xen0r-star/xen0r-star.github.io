@@ -1,6 +1,14 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+// import * as shipAssets from '/public/assets/Ship.gltf'
+
 import * as MOVE from './move';
+
+import dataImport from './data.json'
+var data = dataImport
+console.log(data)
+
 
 // Rendue
 const renderer = new THREE.WebGLRenderer();
@@ -9,125 +17,85 @@ renderer.setClearColor(0xdcdcdc);
 document.body.appendChild(renderer.domElement);
 
 
-var worldSetting = {
-  id: null,
-  gravity: {
-    x: 0,
-    y: 0,
-    z: -5
-  }
-}
-
+// Scene
 const scene = new THREE.Scene();
-worldSetting.id = new CANNON.World(); // Configuration moteur physique
-worldSetting.id.gravity.set(worldSetting.gravity.x, worldSetting.gravity.y, worldSetting.gravity.z);
+data.worldSetting.id = new CANNON.World(); // Configuration moteur physique
+data.worldSetting.id.gravity.set(data.worldSetting.gravity.x, data.worldSetting.gravity.y, data.worldSetting.gravity.z);
 
 
-var cameraSetting = {
-  id: null,
-  spawn: {
-    "x": 0,
-    "y": -5,
-    "z": 5
-  }
-};
-cameraSetting.id = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
-
+// Camera
+data.cameraSetting.id = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 function screenResize(evnt) {
-  cameraSetting.id = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  data.cameraSetting.id = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 }
 window.onresize = screenResize;
-
-cameraSetting.id.position.set(cameraSetting.spawn.x, cameraSetting.spawn.y, cameraSetting.spawn.z);
-
+data.cameraSetting.id.position.set(data.cameraSetting.spawn.x, data.cameraSetting.spawn.y, data.cameraSetting.spawn.z);
 
 
 
-var platformSetting = {
-  id: null,
-  geometry: null,
-  material: null,
-  shape: null,
-  body: null,
-  size: {
-    x: 10,
-    y: 10,
-    z: 0.2
-  }
-}
+// Platforme
+data.platformSetting.geometry = new THREE.PlaneGeometry(data.platformSetting.size.x, data.platformSetting.size.y);
+data.platformSetting.material = new THREE.MeshBasicMaterial({ color: 0x28ff80 });
+data.platformSetting.id = new THREE.Mesh(data.platformSetting.geometry, data.platformSetting.material);
+scene.add(data.platformSetting.id);
 
-platformSetting.geometry = new THREE.PlaneGeometry(platformSetting.size.x, platformSetting.size.y);
-platformSetting.material = new THREE.MeshBasicMaterial({ color: 0x28ff80 });
-platformSetting.id = new THREE.Mesh(platformSetting.geometry, platformSetting.material);
-scene.add(platformSetting.id);
-
-platformSetting.shape = new CANNON.Box(new CANNON.Vec3(platformSetting.size.x / 2, platformSetting.size.y / 2, platformSetting.size.z)); // moitier taille
-platformSetting.body = new CANNON.Body({ mass: 0, shape: platformSetting.shape });
-worldSetting.id.addBody(platformSetting.body);
+data.platformSetting.shape = new CANNON.Box(new CANNON.Vec3(data.platformSetting.size.x / 2, data.platformSetting.size.y / 2, data.platformSetting.size.z)); // moitier taille
+data.platformSetting.body = new CANNON.Body({ mass: 0, shape: data.platformSetting.shape });
+data.worldSetting.id.addBody(data.platformSetting.body);
 
 
 
-var characterSetting = {
-  id: null,
-  geometry: null,
-  material: null,
-  shape: null,
-  body: null,
-  size: {
-    x: 0.5,
-    y: 0.5,
-    z: 0.5
-  },
-  spawn: {
-    x: 0,
-    y: 1,
-    z: 5
-  },
-  speed: 0.1,
-  velocity: new THREE.Vector3(0, 0, 0),
-  angularVelocity: 0,
-}
+// Personnage
 
-characterSetting.geometry = new THREE.BoxGeometry(characterSetting.size.x, characterSetting.size.y, characterSetting.size.z); // moitier taille
-characterSetting.material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
-characterSetting.id = new THREE.Mesh(characterSetting.geometry, characterSetting.material);
-scene.add(characterSetting.id);
+// const loader = new GLTFLoader();
+// loader.load(shipAssets,
+// 	function ( gltf ) {
+// 		data.characterSetting.id = gltf.scene;
+// 		scene.add(data.characterSetting.id);
+// 	},
+//   function (xhr) { 
+//     console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+//   },
+//   function (error) {
+//     console.log('An error happened');
+//   }
+// );
 
-characterSetting.id.position.set(0, 1, 10);
+data.characterSetting.geometry = new THREE.BoxGeometry(data.characterSetting.size.x, data.characterSetting.size.y, data.characterSetting.size.z); // moitier taille
+data.characterSetting.material = new THREE.MeshBasicMaterial({ color: 0xff0000 });
+data.characterSetting.id = new THREE.Mesh(data.characterSetting.geometry, data.characterSetting.material);
+scene.add(data.characterSetting.id);
+
+data.characterSetting.id.position.set(0, 1, 10);
 
 // Physique
-characterSetting.shape = new CANNON.Box(new CANNON.Vec3(characterSetting.size.x / 2, characterSetting.size.y / 2, characterSetting.size.z / 2)); // La moitié de la taille du cube
-characterSetting.body = new CANNON.Body({ mass: 1, shape: characterSetting.shape });
-worldSetting.id.addBody(characterSetting.body);
+data.characterSetting.velocity = new THREE.Vector3(0, 0, 0);
+data.characterSetting.shape = new CANNON.Box(new CANNON.Vec3(data.characterSetting.size.x / 2, data.characterSetting.size.y / 2, data.characterSetting.size.z / 2)); // La moitié de la taille du cube
+data.characterSetting.body = new CANNON.Body({ mass: 1, shape: data.characterSetting.shape });
+data.worldSetting.id.addBody(data.characterSetting.body);
 
-characterSetting.body.position.copy(characterSetting.id.position);
-characterSetting.body.quaternion.copy(characterSetting.id.quaternion);
-
-
-
-var keysMouve = {
-  Up: "ArrowUp",
-  Down: "ArrowDown",
-  Left: "ArrowLeft",
-  Right: "ArrowRight",
-}
-
-MOVE.moveObject(characterSetting, keysMouve);
+data.characterSetting.body.position.copy(data.characterSetting.id.position);
+data.characterSetting.body.quaternion.copy(data.characterSetting.id.quaternion);
 
 
+
+// Mouvement personnage
+MOVE.moveObject(data.characterSetting, data.keysMouve);
+
+// Boucle par frame
 const animate = () => {
   requestAnimationFrame(animate);
 
-  MOVE.updateCamera(characterSetting, cameraSetting, 5, -3)
+  MOVE.updateCamera(data.characterSetting, data.cameraSetting, 5, -3)
 
-  worldSetting.id.step(1/60);
+  data.worldSetting.id.step(1 / 60);
 
-  characterSetting.id.position.copy(characterSetting.body.position);
-  characterSetting.id.quaternion.copy(characterSetting.body.quaternion);
+  data.characterSetting.id.position.copy(data.characterSetting.body.position);
+  data.characterSetting.id.quaternion.copy(data.characterSetting.body.quaternion);
 
-  // MOVE.respawn(characterSetting.id, -10, 25);
+  MOVE.respawn(data.characterSetting, -10, 25);
 
-  renderer.render(scene, cameraSetting.id);
+  renderer.render(scene, data.cameraSetting.id);
 };
 
 animate();
