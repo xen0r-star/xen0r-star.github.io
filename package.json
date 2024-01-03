@@ -13,7 +13,6 @@
   "dependencies": {
     "acorn": "^8.11.2",
     "cannon": "^0.6.2",
-    "copy-webpack-plugin": "^11.0.0",
     "fs": "^0.0.1-security",
     "http-server": "^14.1.1",
     "mime-types": "^2.1.35",
@@ -27,6 +26,7 @@
     "clean-webpack-plugin": "^4.0.0",
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
+    "file-loader": "^6.2.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^7.3.3",

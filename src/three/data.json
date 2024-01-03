@@ -32,6 +32,7 @@
 
     "characterSetting": {
         "id": null,
+        "sizeFile": 0,
         "geometry": null,
         "material": null,
         "shape": null,
@@ -49,6 +50,15 @@
         "speed": 0.1,
         "velocity": null,
         "angularVelocity": 0
+    },
+
+    "lightCharacterSetting": {
+        "id": null,
+        "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 10
+        }
     },
 
     "keysMouve": {

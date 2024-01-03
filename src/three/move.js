@@ -1,22 +1,26 @@
 import * as THREE from 'three';
 
 export function updateCamera(object, camera, distance, decalage) {
-    // Positionner objet
-    object.id.translateY(object.velocity.y);
-    object.id.rotateZ(object.angularVelocity);
-
-    object.body.position.copy(object.id.position);
-    object.body.quaternion.copy(object.id.quaternion);
-
-    // Calculer nouvelle position camera
-    const characterPosition = object.id.position.clone();
-    const offset = new THREE.Vector3(0, decalage, distance);
-    const cameraPosition = characterPosition.clone().add(offset);
-
-    // Positionner camera
-    camera.id.position.copy(cameraPosition);
-    camera.id.lookAt(characterPosition);
+    if (object.id != null) {
+        
+        // Positionner objet
+        object.id.translateY(object.velocity.y);
+        object.id.rotateZ(object.angularVelocity);
+    
+        object.body.position.copy(object.id.position);
+        object.body.quaternion.copy(object.id.quaternion);
+    
+        // Calculer nouvelle position camera
+        const characterPosition = object.id.position.clone();
+        const offset = new THREE.Vector3(0, decalage, distance);
+        const cameraPosition = characterPosition.clone().add(offset);
+    
+        // Positionner camera
+        camera.id.position.copy(cameraPosition);
+        camera.id.lookAt(characterPosition);
+    }
 }
+
 
 export function moveObject(move, keysMouve) {
     const onKeyDown = (event) => {
@@ -53,6 +57,7 @@ export function moveObject(move, keysMouve) {
     document.addEventListener("keyup", onKeyUp);
 }
 
+
 export function respawn(object, min, max) {
     if (object.id.position.z < min || object.id.position.z > max) {
         object.id.position.set(object.spawn.x, object.spawn.y, object.spawn.z);
@@ -60,4 +65,9 @@ export function respawn(object, min, max) {
         object.velocity.set(0, 0, 0);
         object.angularVelocity = 0;
     }
-  }
+}
+
+
+export function moveLight(light, object) {
+    light.id.position.copy(object.id.position);
+}

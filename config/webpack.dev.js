@@ -1,5 +1,7 @@
-const {merge} = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.config');
+
+const path = require('path')
 
 
 // Configuration
@@ -12,6 +14,12 @@ module.exports = merge(common, {
     open: true,
     compress: true,
     hot: true,
+    static: {
+      directory: path.resolve(__dirname, '../public'),
+    },
+    headers: { 
+      'Content-Encoding': 'none',
+    },
     port: 8080,
     watchFiles: ['src/**/*.*', 'src/*.*'],
   },

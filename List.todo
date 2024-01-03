@@ -2,14 +2,36 @@
   "todotree": {
     "tree": [
       {
-        "key": 1704235689600,
+        "key": 1704316519257,
         "children": [],
         "todo": {
-          "content": "Faire l'importation d'oject acec gltf-loader",
-          "id": 1704235689600,
-          "level": "danger",
+          "content": "faire chargment par rapport chargement des fichier",
+          "id": 1704316519257,
+          "level": "default",
           "done": false,
-          "start": 1704235689600
+          "start": 1704316519257
+        }
+      },
+      {
+        "key": 1704318572695,
+        "children": [],
+        "todo": {
+          "content": "rotation object",
+          "id": 1704318572695,
+          "level": "default",
+          "done": false,
+          "start": 1704318572695
+        }
+      },
+      {
+        "key": 1704318579327,
+        "children": [],
+        "todo": {
+          "content": "corriger respawn",
+          "id": 1704318579327,
+          "level": "default",
+          "done": false,
+          "start": 1704318579327
         }
       }
     ],
@@ -25,6 +47,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1704235722249"
+    "version": "1704319098442"
   }
 }
