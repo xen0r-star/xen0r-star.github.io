@@ -1,0 +1,23 @@
+#Bulb {
+    width: 5%;
+    right: 0;
+    position: absolute;
+    margin: 0 20px 0 0;
+    top: -5vw;
+    cursor: pointer;
+    z-index: 200;
+}
+
+@keyframes BulbClicked {
+    0% {
+        top: -5vw;
+    }
+
+    50% {
+        top: 0vw;
+    }
+
+    100% {
+        top: -5vw;
+    }
+}

@@ -18,6 +18,45 @@ body {
     --ColorBulbDash: #000000;
 }
 
+
+
+#phone {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+#desktop {
+    background-color: white;
+    height: 100%;
+    width: 100%;
+}
+
+
+
+@media (min-width: 900px) {
+    #desktop {
+        display: block;
+    }
+    #phone {
+        display: none;
+    }
+}
+
+@media (max-width: 899px) {
+    #desktop {
+        display: none;
+    }
+    #phone {
+        display: block;
+    }
+}
+
 canvas {
     height: 100% !important;
     width: 100% !important;
@@ -81,32 +120,5 @@ canvas {
 
     100% {
         transform: none
-    }
-}
-
-
-
-
-#Bulb {
-    width: 5%;
-    right: 0;
-    position: absolute;
-    margin: 0 20px 0 0;
-    top: -5vw;
-    cursor: pointer;
-    z-index: 200;
-}
-
-@keyframes BulbClicked {
-    0% {
-        top: -5vw;
-    }
-
-    50% {
-        top: 0vw;
-    }
-
-    100% {
-        top: -5vw;
     }
 }

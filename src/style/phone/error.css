@@ -1,0 +1,15 @@
+#phoneErrorPicture {
+    background-color: red;
+}
+
+#phoneErrorTitle {
+    background-color: green;
+}
+
+#phoneErrorText {
+    background-color: yellow;
+}
+
+#phoneErrorButton {
+    background-color: blue;
+}

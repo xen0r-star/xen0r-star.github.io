@@ -5,11 +5,19 @@ const paths = require('./paths')
 const fs = require('fs');
 
 
+// lecture template
+const getFilesContent = (dirPath) => {
+  return fs.readdirSync(dirPath)
+    .filter(file => fs.lstatSync(path.join(dirPath, file)).isFile())
+    .map(file => fs.readFileSync(path.join(dirPath, file), 'utf8'))
+    .join('\n');
+};
+
 // Template
-const templates = fs.readdirSync(paths.template);
-const templateContents = templates.map(template => {
-  return fs.readFileSync(path.join(paths.template, template), 'utf8');
-}).join('\n');
+const templateContents = getFilesContent(paths.template); // Template général
+const templateContentsPhone = getFilesContent(paths.templatePhone); // Template téléphone
+const templateContentsDesktop = getFilesContent(paths.templateDesktop); // Template ordinateur
+let templateEnd = '<div id="phone">' + 	templateContentsPhone + '</div><div id="desktop">' + templateContentsDesktop + '</div>' + templateContents;
 
 
 // Configuration
@@ -26,7 +34,7 @@ module.exports = {
     new HtmlWebpackPlugin({
       template: paths.src + '/index.html',
       inject: 'body',
-      content: templateContents,
+      content: templateEnd,
       filename: 'index.html',
       minify: {
         minifyJS: true,
