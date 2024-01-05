@@ -33,6 +33,28 @@
           "done": false,
           "start": 1704318579327
         }
+      },
+      {
+        "key": 1704388875130,
+        "children": [],
+        "todo": {
+          "content": "screen pour phone",
+          "id": 1704388875130,
+          "level": "default",
+          "done": false,
+          "start": 1704388875130
+        }
+      },
+      {
+        "key": 1704388886460,
+        "children": [],
+        "todo": {
+          "content": "probléme actualisation code html (webpack config)",
+          "id": 1704388886460,
+          "level": "default",
+          "done": false,
+          "start": 1704388886460
+        }
       }
     ],
     "expandKeys": [],
@@ -47,6 +69,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1704319098442"
+    "version": "1704388919202"
   }
 }

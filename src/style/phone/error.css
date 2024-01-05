@@ -1,15 +1,56 @@
+#phone {
+    gap: 20px;
+    padding: 10%;
+    height: 90%;
+    width: 80%;
+}
+
 #phoneErrorPicture {
     background-color: red;
+    width: 50vw;
+    height: 50vw;
 }
 
 #phoneErrorTitle {
-    background-color: green;
+    margin-top: 25px;
+    color: var(--Element);
+    font-family: Inter;
+    font-size: 7.5vw;
+    font-weight: 700;
 }
 
 #phoneErrorText {
-    background-color: yellow;
+    color: var(--Element);
+    text-align: center;
+    font-size: 3.5vw;
+    font-family: kanit;
+    font-weight: 450;
 }
 
 #phoneErrorButton {
-    background-color: blue;
+    width: 70%;
+    height: 6vh;
+    border: solid var(--Element) 1vw;
+    border-radius: 100vw;
+    box-sizing: border-box;
+    padding: 0.75vw;
+    margin: 1%;
+    cursor: pointer;
 }
+
+#phoneErrorButton > div {
+    background: var(--Element);
+    height: 100%;
+    width: 100%;
+    border-radius: 100vw;
+
+    color: var(--Background);
+    font-family: Lilita One;
+    letter-spacing: 10px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 140%;
+}
+

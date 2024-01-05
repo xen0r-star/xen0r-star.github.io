@@ -41,7 +41,7 @@ body {
 
 @media (min-width: 900px) {
     #desktop {
-        display: block;
+        display: flex;
     }
     #phone {
         display: none;
@@ -53,7 +53,7 @@ body {
         display: none;
     }
     #phone {
-        display: block;
+        display: flex;
     }
 }
 
