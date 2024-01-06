@@ -80,7 +80,7 @@ loader.load(shipAssets,
   function (error) {
     console.log('An error happened');
   }
-);
+); 
   
 
 
