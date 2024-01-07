@@ -14,14 +14,9 @@ const getFilesContent = (dirPath) => {
 };
 
 // Template
-function templateEnd() {
-    let templateContents = getFilesContent(paths.template); // Template général
-    let templateContentsPhone = getFilesContent(paths.templatePhone); // Template téléphone
-    let templateContentsDesktop = getFilesContent(paths.templateDesktop); // Template ordinateur
-    console.log("html ok")
-    
-    return '<div id="phone">' + templateContentsPhone + '</div><div id="desktop">' + templateContentsDesktop + '</div>' + templateContents;
-}
+var templateBody = getFilesContent(paths.template); // Template général
+var templatePhone = getFilesContent(paths.templatePhone); // Template téléphone
+var templateDesktop = getFilesContent(paths.templateDesktop); // Template ordinateur
 
 
 // Configuration
@@ -37,9 +32,12 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: paths.src + '/index.html',
-            inject: 'body',
-            content: templateEnd(),
-            filename: 'index.html',
+            templateParameters: {
+                'body': templateBody,
+                'desktop': templateDesktop,
+                'phone': templatePhone
+            },
+
             minify: {
                 minifyJS: true,
                 minifyCSS: true,

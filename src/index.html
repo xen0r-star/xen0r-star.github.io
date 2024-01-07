@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="utf-8">
 		<title>Xen0r-star | Portfolio</title>
@@ -9,5 +9,13 @@
 		<link href="https://fonts.googleapis.com/css2?family=Lilita+One&display=swap" rel="stylesheet">
 	</head>
 
-	<body><%= htmlWebpackPlugin.options.content %></body>
+	<body><%= body %></body>
+
+	<script>
+		// @ts-ignore
+		const desktop = <%= JSON.stringify(desktop) %>;
+		const phone = <%= JSON.stringify(phone) %>;
+
+		document.body.innerHTML = ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1 ) == false) ? desktop : phone;
+	</script>
 </html>

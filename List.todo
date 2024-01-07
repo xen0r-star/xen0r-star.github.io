@@ -41,8 +41,10 @@
           "content": "screen pour phone",
           "id": 1704388875130,
           "level": "default",
-          "done": false,
-          "start": 1704388875130
+          "done": true,
+          "start": 1704388875130,
+          "focus": false,
+          "end": 1704660821873
         }
       },
       {
@@ -69,6 +71,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1704388919202"
+    "version": "1704660821951"
   }
 }
