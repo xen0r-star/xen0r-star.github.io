@@ -23,9 +23,7 @@ module.exports = merge(common, {
 		},
 		port: 8080,
 		watchFiles: [
-    		'${paths.public}/**/*.*',
-    		'${paths.templatePhone}/**/*.*',
-    		'${paths.templateDesktop}/**/*.*',
+			'src/**/**/*.*',
 			'src/**/*.*',
 			'src/*.*'
 		],

@@ -4,11 +4,13 @@ export function updateCamera(object, camera, distance, decalage) {
     if (object.id != null) {
         
         // Positionner objet
-        object.id.translateY(object.velocity.y);
-        object.id.rotateZ(object.angularVelocity);
-    
+        object.id.translateX(object.velocity.x);
+        object.id.rotateY(object.angularVelocity);
+        
         object.body.position.copy(object.id.position);
         object.body.quaternion.copy(object.id.quaternion);
+
+        
     
         // Calculer nouvelle position camera
         const characterPosition = object.id.position.clone();
@@ -26,10 +28,10 @@ export function moveObject(move, keysMouve) {
     const onKeyDown = (event) => {
         switch (event.key) {
             case keysMouve.Down:
-                move.velocity.y = -move.speed;
+                move.velocity.x = -move.speed;
                 break;
             case keysMouve.Up:
-                move.velocity.y = move.speed;
+                move.velocity.x = move.speed;
                 break;
             case keysMouve.Left:
                 move.angularVelocity = move.speed;
@@ -44,7 +46,7 @@ export function moveObject(move, keysMouve) {
         switch (event.key) {
             case keysMouve.Up:
             case keysMouve.Down:
-                move.velocity.y = 0; // Arrêter avancer ou reculer
+                move.velocity.x = 0; // Arrêter avancer ou reculer
                 break;
             case keysMouve.Left:
             case keysMouve.Right:
@@ -60,8 +62,9 @@ export function moveObject(move, keysMouve) {
 
 export function respawn(object, min, max) {
     if (object.id.position.z < min || object.id.position.z > max) {
+        console.log("RESPAWN")
         object.id.position.set(object.spawn.x, object.spawn.y, object.spawn.z);
-        object.id.rotation.set(0, 0, 0)
+        object.id.rotation.set(object.rotate.x, object.rotate.y, object.rotate.z)
         object.velocity.set(0, 0, 0);
         object.angularVelocity = 0;
     }

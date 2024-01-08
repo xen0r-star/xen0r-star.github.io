@@ -25,7 +25,7 @@ module.exports = {
 
     output: {
         path: paths.build,
-        filename: 'js/[name].js',
+        filename: 'js/[name].[contenthash].js',
         publicPath: '/',
     },
 

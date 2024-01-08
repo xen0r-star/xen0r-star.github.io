@@ -1,6 +1,11 @@
 {
     "worldSetting": {
         "id": null,
+        "load": {
+            "full": 0,
+            "charged":0
+        },
+
         "gravity": {
             "x": 0,
             "y": 0,
@@ -8,8 +13,10 @@
         }
     },
 
+
     "cameraSetting": {
         "id": null,
+
         "spawn": {
             "x": 0,
             "y": -5,
@@ -17,49 +24,59 @@
         }
     }, 
 
+
     "platformSetting": {
         "id": null,
         "geometry": null,
         "material": null,
         "shape": null,
         "body": null,
+
         "size": {
-          "x": 10,
-          "y": 10,
-          "z": 0.2
+            "x": 10,
+            "y": 10,
+            "z": 0.2
         }
     },
 
+
     "characterSetting": {
         "id": null,
-        "sizeFile": 0,
-        "geometry": null,
-        "material": null,
         "shape": null,
         "body": null,
+        "velocity": null,
+        "angularVelocity": 0,
+
         "size": {
-          "x": 0.5,
-          "y": 0.5,
-          "z": 0.5
+            "x": 0.60,
+            "y": 0.60,
+            "z": 0.60
+        },
+        "rotate": {
+            "x": 1.57,
+            "y": 1.57,
+            "z": 0
         },
         "spawn": {
-          "x": 0,
-          "y": 1,
-          "z": 5
+            "x": 0,
+            "y": 0,
+            "z": 0.5
         },
-        "speed": 0.1,
-        "velocity": null,
-        "angularVelocity": 0
+        "mass": 2,
+        "speed": 0.1
     },
+
 
     "lightCharacterSetting": {
         "id": null,
+
         "spawn": {
             "x": 0,
             "y": 0,
             "z": 10
         }
     },
+
 
     "keysMouve": {
         "Up": "ArrowUp",

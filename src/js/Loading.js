@@ -2,7 +2,7 @@ let Bar = document.getElementById('Bar');
 let Progress = document.getElementById('Progress');
 Bar.style.width = 0;
 
-let Speed = 1
+let Speed = 5
 
 function ProgressBarLoading(ValueProgressBar) {
     let i = parseInt(Bar.style.width);

@@ -14,7 +14,7 @@ module.exports = merge(common, {
 
     output: {
         path: paths.build,
-        filename: 'js/[name].js',
+        filename: 'js/[name].[contenthash].js',
         publicPath: '/',
     },
 
@@ -43,7 +43,7 @@ module.exports = merge(common, {
         new CleanWebpackPlugin(),
 
         new MiniCssExtractPlugin({
-            filename: 'styles/[name].css',
+            filename: 'styles/[name].[contenthash].css',
             chunkFilename: '[id].css',
         }),
     ],
