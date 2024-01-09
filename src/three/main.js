@@ -40,12 +40,14 @@ scene.add(data.lightCharacterSetting.id);
 
 
 // Platforme
-data.platformSetting.geometry = new THREE.PlaneGeometry(data.platformSetting.size.x, data.platformSetting.size.y);
-data.platformSetting.material = new THREE.MeshBasicMaterial({ color: 0x28ff80 });
+data.platformSetting.geometry = new THREE.BoxGeometry(data.platformSetting.size.x, data.platformSetting.size.y, data.platformSetting.size.z);
+data.platformSetting.material = new THREE.MeshStandardMaterial({ color: 0x0000ff, transparent: true, opacity: 0.5 });
 data.platformSetting.id = new THREE.Mesh(data.platformSetting.geometry, data.platformSetting.material);
 scene.add(data.platformSetting.id);
 
-data.platformSetting.shape = new CANNON.Box(new CANNON.Vec3(data.platformSetting.size.x / 2, data.platformSetting.size.y / 2, data.platformSetting.size.z)); // moitier taille
+data.platformSetting.id.position.set(0, 0, 0);
+
+data.platformSetting.shape = new CANNON.Box(new CANNON.Vec3(data.platformSetting.size.x / 2, data.platformSetting.size.y / 2, data.platformSetting.size.z / 2)); // moitier taille
 data.platformSetting.body = new CANNON.Body({ mass: 0, shape: data.platformSetting.shape });
 data.worldSetting.id.addBody(data.platformSetting.body);
 
@@ -99,7 +101,7 @@ const animate = () => {
         data.characterSetting.id.position.copy(data.characterSetting.body.position);
         data.characterSetting.id.quaternion.copy(data.characterSetting.body.quaternion);
 
-        MOVE.respawn(data.characterSetting, -10, 25);
+        MOVE.respawn(data.characterSetting, -10, 1000);
 
         renderer.render(scene, data.cameraSetting.id);
     }
