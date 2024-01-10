@@ -41,7 +41,7 @@ scene.add(data.lightCharacterSetting.id);
 
 // Platforme
 data.platformSetting.geometry = new THREE.BoxGeometry(data.platformSetting.size.x, data.platformSetting.size.y, data.platformSetting.size.z);
-data.platformSetting.material = new THREE.MeshStandardMaterial({ color: 0x0000ff, transparent: true, opacity: 0.5 });
+data.platformSetting.material = new THREE.MeshStandardMaterial({ color: 0x34ebe5, transparent: false, opacity: 1 });
 data.platformSetting.id = new THREE.Mesh(data.platformSetting.geometry, data.platformSetting.material);
 scene.add(data.platformSetting.id);
 
