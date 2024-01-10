@@ -45,7 +45,7 @@
         "shape": null,
         "body": null,
         "velocity": null,
-        "angularVelocity": 0,
+        "angularVelocity": null,
 
         "size": {
             "x": 0.60,
