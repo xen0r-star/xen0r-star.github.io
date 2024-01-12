@@ -25,28 +25,13 @@ export function updateCamera(object, camera, distance, decalage) {
 
 
 export function moveObject(move, keysMouve) {
-    const acceleration = 0.001;
-    const deceleration = 0.1;
-    const maxForwardSpeed = 0.1;
-    const maxBackwardSpeed = 0.05;
-
-    let currentSpeed = 0;
-
-    const updateSpeed = (accelerate) => {
-        currentSpeed = accelerate ? currentSpeed + acceleration : currentSpeed - deceleration
-        const maxSpeed = accelerate ? maxForwardSpeed : maxBackwardSpeed;
-        currentSpeed = Math.max(-maxSpeed, Math.min(maxSpeed, currentSpeed));
-
-        move.velocity.x = currentSpeed;
-    };
-
     const onKeyDown = (event) => {
         switch (event.key) {
             case keysMouve.Down:
-                updateSpeed(false);
+                move.velocity.x = -move.speed;
                 break;
             case keysMouve.Up:
-                updateSpeed(true);
+                move.velocity.x = move.speed;
                 break;
             case keysMouve.Left:
                 move.angularVelocity.y = move.speed;
@@ -59,19 +44,15 @@ export function moveObject(move, keysMouve) {
 
     const onKeyUp = (event) => {
         switch (event.key) {
-            case keysMouve.Down:
             case keysMouve.Up:
-                currentSpeed = 0;
+            case keysMouve.Down:
+                move.velocity.x = 0; // Arrêter avancer ou reculer
                 break;
             case keysMouve.Left:
             case keysMouve.Right:
-                move.angularVelocity.y = 0;
+                move.angularVelocity.set(0, 0, 0); // Arrêter tourner
                 break;
         }
-
-        move.velocity.x = currentSpeed;
-
-        console.log(currentSpeed);
     };
 
     document.addEventListener("keydown", onKeyDown);

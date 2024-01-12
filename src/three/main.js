@@ -4,10 +4,15 @@ import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
 
 import shipAssets from '/public/assets/Ship.gltf'
 import * as MOVE from './move';
+import * as PERLINNOISE from './perlinNoise'
 
 import dataImport from './data.json'
 var data = dataImport
 console.log("Data object", data)
+
+
+console.log(PERLINNOISE.Noise(600))
+
 
 
 // Rendue
@@ -39,17 +44,44 @@ scene.add(data.lightCharacterSetting.id);
 
 
 
-// Platforme
-data.platformSetting.geometry = new THREE.BoxGeometry(data.platformSetting.size.x, data.platformSetting.size.y, data.platformSetting.size.z);
-data.platformSetting.material = new THREE.MeshStandardMaterial({ color: 0x34ebe5, transparent: false, opacity: 1 });
-data.platformSetting.id = new THREE.Mesh(data.platformSetting.geometry, data.platformSetting.material);
-scene.add(data.platformSetting.id);
+// Création de la géométrie
+data.waterSetting.geometry = new THREE.BoxGeometry(data.waterSetting.size.x, data.waterSetting.size.y, data.waterSetting.size.z, 50, 50);
 
-data.platformSetting.id.position.set(0, 0, 0);
+var vertices = data.waterSetting.geometry.attributes.position.array;
+console.log(vertices);
+    
+for (var i = 0; i < vertices.length; i += 3) {
+    var x = vertices[i];
+    var y = vertices[i + 1];
+    var z = vertices[i + 2];
+        
+    var time = Date.now() * 0.001;
+    var displacement = Math.sin(x * 0.5 + time) * 5.0;
+        
+    // Modification de la composante z du vertex
+    // vertices[i + 2] = displacement;
+    vertices[i + 2] = vertices[i + 2];
+}
 
-data.platformSetting.shape = new CANNON.Box(new CANNON.Vec3(data.platformSetting.size.x / 2, data.platformSetting.size.y / 2, data.platformSetting.size.z / 2)); // moitier taille
-data.platformSetting.body = new CANNON.Body({ mass: 0, shape: data.platformSetting.shape });
-data.worldSetting.id.addBody(data.platformSetting.body);
+    
+data.waterSetting.geometry.attributes.position.needsUpdate = true; // Mise a jour geometry
+
+
+
+data.waterSetting.material = new THREE.MeshStandardMaterial({ color: 0x34ebe5, transparent: false, opacity: 1 });
+data.waterSetting.id = new THREE.Mesh(data.waterSetting.geometry, data.waterSetting.material);
+
+data.waterSetting.id.position.set(0, 0, 0);
+scene.add(data.waterSetting.id);
+
+
+// Cannon.js
+data.waterSetting.shape = new CANNON.Box(new CANNON.Vec3(data.waterSetting.size.x / 2, data.waterSetting.size.y / 2, data.waterSetting.size.z / 2));
+data.waterSetting.body = new CANNON.Body({ mass: 0, shape: data.waterSetting.shape });
+data.waterSetting.body.position.copy(data.waterSetting.id.position); // Assurez-vous que la position du corps correspond à celle du maillage
+data.worldSetting.id.addBody(data.waterSetting.body);
+
+
 
 
 

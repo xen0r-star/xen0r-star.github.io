@@ -9,7 +9,7 @@
         "gravity": {
             "x": 0,
             "y": 0,
-            "z": -5
+            "z": -9.81
         }
     },
 
@@ -25,7 +25,7 @@
     }, 
 
 
-    "platformSetting": {
+    "waterSetting": {
         "id": null,
         "geometry": null,
         "material": null,
@@ -33,9 +33,9 @@
         "body": null,
 
         "size": {
-            "x": 10,
-            "y": 10,
-            "z": 10
+            "x": 500,
+            "y": 500,
+            "z": 5
         }
     },
 
@@ -62,7 +62,7 @@
             "y": 0,
             "z": 10
         },
-        "mass": 2,
+        "mass": 5000,
         "speed": 0.1
     },
 
