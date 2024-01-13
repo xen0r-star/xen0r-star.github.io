@@ -18,7 +18,11 @@ body {
     --ColorBulbDash: #000000;
 }
 
-canvas {
+body > canvas {
     height: 100% !important;
     width: 100% !important;
+}
+
+canvas {
+    display: block !important;
 }

@@ -1,18 +1,19 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
 import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js";
+import Stats from 'stats.js'
 
 import shipAssets from '/public/assets/Ship.gltf'
 import * as MOVE from './move';
 import * as PERLINNOISE from './perlinNoise'
 
 import dataImport from './data.json'
+import { tokTypes } from 'acorn';
 var data = dataImport
 console.log("Data object", data)
 
 
 console.log(PERLINNOISE.Noise(600))
-
 
 
 // Rendue
@@ -121,13 +122,36 @@ loader.load(shipAssets,
 
 
 
+// Stat
+var stats = new Stats();
+stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
+
+var statsDiv = document.createElement("div");
+statsDiv.id = "stats";
+
+statsDiv.appendChild(stats.dom.childNodes[0]);
+statsDiv.appendChild(stats.dom.childNodes[0]);
+statsDiv.appendChild(stats.dom.childNodes[0]);
+document.body.appendChild(statsDiv);
+
+document.addEventListener("keydown", function(event) {
+    if (event.key === "p" || event.key === "P") {
+        console.log("Stat Page");
+        document.getElementById("stats").style.display = (document.getElementById("stats").style.display == "block") ? "none" : "block";
+    }
+});
+
+
+
 // Boucle par frame
 const animate = () => {
     requestAnimationFrame(animate);
 
+    stats.begin();
+
     if (data.worldSetting.load.charged >= data.worldSetting.load.full && data.characterSetting.id != null) {
 
-        MOVE.updateCamera(data.characterSetting, data.cameraSetting, 5, -3)
+        MOVE.updateCamera(data.characterSetting, data.cameraSetting, 5, -3);
 
         data.worldSetting.id.step(1 / 60);
 
@@ -138,6 +162,8 @@ const animate = () => {
 
         renderer.render(scene, data.cameraSetting.id);
     }
+
+    stats.end();
 };
 
 animate();
