@@ -18,6 +18,6 @@
 		const desktop = <%= JSON.stringify(desktop) %>;
 		const phone = <%= JSON.stringify(phone) %>;
 
-		document.body.innerHTML = ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1 ) == false) ? desktop : phone;
+		document.body.innerHTML += ((typeof window.orientation !== "undefined") || (navigator.userAgent.indexOf('IEMobile') !== -1 ) == false) ? desktop : phone;
 	</script>
 </html>

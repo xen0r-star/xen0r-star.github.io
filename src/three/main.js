@@ -8,12 +8,8 @@ import * as MOVE from './move';
 import * as PERLINNOISE from './perlinNoise'
 
 import dataImport from './data.json'
-import { tokTypes } from 'acorn';
 var data = dataImport
 console.log("Data object", data)
-
-
-console.log(PERLINNOISE.Noise(600))
 
 
 // Rendue
@@ -45,28 +41,22 @@ scene.add(data.lightCharacterSetting.id);
 
 
 
-// Création de la géométrie
-data.waterSetting.geometry = new THREE.BoxGeometry(data.waterSetting.size.x, data.waterSetting.size.y, data.waterSetting.size.z, 50, 50);
 
-var vertices = data.waterSetting.geometry.attributes.position.array;
-console.log(vertices);
+
     
-for (var i = 0; i < vertices.length; i += 3) {
-    var x = vertices[i];
-    var y = vertices[i + 1];
-    var z = vertices[i + 2];
-        
-    var time = Date.now() * 0.001;
-    var displacement = Math.sin(x * 0.5 + time) * 5.0;
-        
-    // Modification de la composante z du vertex
-    // vertices[i + 2] = displacement;
-    vertices[i + 2] = vertices[i + 2];
+data.waterSetting.geometry = new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y, 9, 9);
+
+const positions = data.waterSetting.geometry.attributes.position.array;
+const perlinNoiseData = PERLINNOISE.Noise(data.waterSetting.waveSize.x, data.waterSetting.waveSize.y);
+
+for (let i = 0; i < (positions.length / 3); i += 3) {
+
+    const ligne = Math.floor(i / perlinNoiseData.length);
+    const colonne = i % perlinNoiseData.length;
+    positions[i + 2] = perlinNoiseData[ligne][colonne];
 }
 
-    
-data.waterSetting.geometry.attributes.position.needsUpdate = true; // Mise a jour geometry
-
+data.waterSetting.geometry.attributes.position.needsUpdate = true;
 
 
 data.waterSetting.material = new THREE.MeshStandardMaterial({ color: 0x34ebe5, transparent: false, opacity: 1 });
@@ -74,6 +64,7 @@ data.waterSetting.id = new THREE.Mesh(data.waterSetting.geometry, data.waterSett
 
 data.waterSetting.id.position.set(0, 0, 0);
 scene.add(data.waterSetting.id);
+
 
 
 // Cannon.js
@@ -126,13 +117,13 @@ loader.load(shipAssets,
 var stats = new Stats();
 stats.showPanel(0); // 0: fps, 1: ms, 2: mb, 3+: custom
 
-var statsDiv = document.createElement("div");
-statsDiv.id = "stats";
+var graphicsDiv = document.createElement("div");
+graphicsDiv.id = "graphics";
 
-statsDiv.appendChild(stats.dom.childNodes[0]);
-statsDiv.appendChild(stats.dom.childNodes[0]);
-statsDiv.appendChild(stats.dom.childNodes[0]);
-document.body.appendChild(statsDiv);
+graphicsDiv.appendChild(stats.dom.childNodes[0]);
+graphicsDiv.appendChild(stats.dom.childNodes[0]);
+graphicsDiv.appendChild(stats.dom.childNodes[0]);
+document.getElementById('stats').appendChild(graphicsDiv);
 
 document.addEventListener("keydown", function(event) {
     if (event.key === "p" || event.key === "P") {
@@ -140,6 +131,31 @@ document.addEventListener("keydown", function(event) {
         document.getElementById("stats").style.display = (document.getElementById("stats").style.display == "block") ? "none" : "block";
     }
 });
+
+
+const canvas = document.getElementById('perlinNoise');
+const ctx = canvas.getContext('2d');
+
+function mapValueToColor(value, min, max) {
+    const normalizedValue = (value - min) / (max - min);
+    const colorValue = Math.floor(255 * normalizedValue);
+    return `rgb(${colorValue}, ${colorValue}, ${colorValue})`;
+}
+
+const minValue = Math.min(...perlinNoiseData.flat());
+const maxValue = Math.max(...perlinNoiseData.flat());
+
+const canvasRatioX = canvas.width / perlinNoiseData.length;
+const canvasRatioY = canvas.height / perlinNoiseData[0].length;
+
+for (let i = 0; i < perlinNoiseData.length; i++) {
+    for (let j = 0; j < perlinNoiseData[i].length; j++) {
+        const value = perlinNoiseData[i][j];
+        const color = mapValueToColor(value, minValue, maxValue);
+        ctx.fillStyle = color;
+        ctx.fillRect(i * canvasRatioX, j * canvasRatioY, canvasRatioX, canvasRatioY);
+    }
+}
 
 
 

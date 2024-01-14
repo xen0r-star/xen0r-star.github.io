@@ -56,17 +56,17 @@ function perlin_get(x, y) {
 }
 
 
-export function Noise(gridSize) {
+export function Noise(gridSizeX, gridSizeY) {
     // Créer une matrice pour stocker les valeurs du bruit de Perlin
     let perlinGrid = [];
     
     // Remplir la matrice avec les valeurs du bruit de Perlin
-    for (let i = 0; i < gridSize; i++) {
+    for (let i = 0; i < gridSizeX; i++) {
         let row = [];
-        for (let j = 0; j < gridSize; j++) {
+        for (let j = 0; j < gridSizeY; j++) {
             // Calculer les coordonnées normalisées entre 0 et 1
-            const x = i / gridSize;
-            const y = j / gridSize;
+            const x = i / gridSizeX;
+            const y = j / gridSizeY;
     
             // Obtenir la valeur du bruit de Perlin pour les coordonnées continues
             const perlinValue = perlin_get(x, y);

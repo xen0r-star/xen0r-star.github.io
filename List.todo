@@ -14,17 +14,42 @@
       },
       {
         "key": 1704388886460,
-        "children": [],
+        "children": [
+          {
+            "key": 1705256042400,
+            "children": [],
+            "todo": {
+              "content": "reload serve when save file",
+              "id": 1705256042400,
+              "level": "default",
+              "done": false,
+              "start": 1705256042400
+            }
+          },
+          {
+            "key": 1705256065120,
+            "children": [],
+            "todo": {
+              "content": "add error",
+              "id": 1705256065120,
+              "level": "default",
+              "done": false,
+              "start": 1705256065120
+            }
+          }
+        ],
         "todo": {
-          "content": "probléme actualisation code html (webpack config)",
+          "content": "webpack",
           "id": 1704388886460,
-          "level": "default",
+          "level": "warning",
           "done": false,
           "start": 1704388886460
         }
       }
     ],
-    "expandKeys": [],
+    "expandKeys": [
+      1704388886460
+    ],
     "schema": "https://github.com/Saber2pr/vsc-ext-todolist/blob/master/src/api/type.ts#L3",
     "add_mode": "bottom",
     "virtual": false,
@@ -36,6 +61,6 @@
     "showEndTime": false,
     "simpleMode": false,
     "lang": "en",
-    "version": "1704746805280"
+    "version": "1705256101746"
   }
 }
