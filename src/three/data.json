@@ -1,6 +1,7 @@
 {
     "worldSetting": {
         "id": null,
+        "physics": null,
         "load": {
             "full": 0,
             "charged":0
@@ -72,14 +73,8 @@
     },
 
 
-    "lightCharacterSetting": {
-        "id": null,
-
-        "spawn": {
-            "x": 0,
-            "y": 0,
-            "z": 10
-        }
+    "ambientLightSetting": {
+        "id": null
     },
 
 

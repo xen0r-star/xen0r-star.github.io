@@ -9,19 +9,13 @@ body {
     height: 100%;
     width: 100%;
     overflow: hidden;
+
+    canvas {
+        height: 100%;
+        width: 100%;
+    }
 }
 
-:root {
-    --Background: #ffffff;
-    --Color: #000000;
-    --Element: #000000; 
-    --ColorBulbDash: #000000;
-}
-
-body > canvas {
-    height: 100% !important;
-    width: 100% !important;
-}
 
 canvas {
     display: block !important;

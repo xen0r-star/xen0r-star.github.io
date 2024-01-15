@@ -8,13 +8,13 @@
     flex-direction: row;
     align-items: flex-end;
     z-index: 100;
-}
-  
-#Icon > a {
-    width: 2.5vw;
-    height: 2.5vw;
-    margin: 0 10px;
-    cursor: pointer;
+
+    a {
+        width: 2.5vw;
+        height: 2.5vw;
+        margin: 0 10px;
+        cursor: pointer;
+    }
 }
 
 /* #IconGithub:hover, #IconTwitter:hover, #IconInstagram:hover, #IconTikTok:hover {

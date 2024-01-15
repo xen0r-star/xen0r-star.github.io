@@ -11,7 +11,6 @@ export function updateCamera(object, camera, distance, decalage) {
         object.body.quaternion.copy(object.id.quaternion);
 
 
-
         // Calculer nouvelle position camera
         const characterPosition = object.id.position.clone();
         const offset = new THREE.Vector3(0, decalage, distance);
@@ -24,20 +23,20 @@ export function updateCamera(object, camera, distance, decalage) {
 }
 
 
-export function moveObject(move, keysMouve) {
+export function moveObject(object, keysMouve) {
     const onKeyDown = (event) => {
         switch (event.key) {
             case keysMouve.Down:
-                move.velocity.x = -move.speed;
+                object.velocity.x = -object.speed;
                 break;
             case keysMouve.Up:
-                move.velocity.x = move.speed;
+                object.velocity.x = object.speed;
                 break;
             case keysMouve.Left:
-                move.angularVelocity.y = move.speed;
+                object.angularVelocity.y = object.speed;
                 break;
             case keysMouve.Right:
-                move.angularVelocity.y = -move.speed;
+                object.angularVelocity.y = -object.speed;
                 break;
         }
     };
@@ -46,11 +45,11 @@ export function moveObject(move, keysMouve) {
         switch (event.key) {
             case keysMouve.Up:
             case keysMouve.Down:
-                move.velocity.x = 0; // Arrêter avancer ou reculer
+                object.velocity.x = 0; // Arrêter avancer ou reculer
                 break;
             case keysMouve.Left:
             case keysMouve.Right:
-                move.angularVelocity.set(0, 0, 0); // Arrêter tourner
+                object.angularVelocity.set(0, 0, 0); // Arrêter tourner
                 break;
         }
     };
@@ -58,8 +57,6 @@ export function moveObject(move, keysMouve) {
     document.addEventListener("keydown", onKeyDown);
     document.addEventListener("keyup", onKeyUp);
 }
-
-
 
 export function respawn(object, min, max) {
     if (object.id.position.z < min || object.id.position.z > max) {
