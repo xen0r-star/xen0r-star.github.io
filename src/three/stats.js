@@ -44,7 +44,7 @@ export function start(perlinNoiseData) {
 
 // WaterPosition :Position { x:855, y:87, z:780 }
 // WaterRotation :Rotation { x:855, y:87, z:780 }
-// WaterSpeed :Speed { x:0, y:0, z:-9.81 }
+// WaterSpeed :Speed { x:0, y:0, z:-9.81 } 
 
 export function update(character, water) {
     document.getElementById('CharacterPosition').innerText = "Position " + character.id.position
