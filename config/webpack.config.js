@@ -58,6 +58,10 @@ module.exports = {
             {
                 test: /\.(gltf)$/,
                 loader: "file-loader",
+                options: {
+                    name: '[name].[ext]',
+                    outputPath: 'js/data'
+                }
             },
 
             { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
