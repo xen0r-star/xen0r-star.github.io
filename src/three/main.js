@@ -11,7 +11,7 @@ import { spawnCharacter } from './character';
 import * as STATS from './stats'
 
 import dataImport from './data.json'
-var data = dataImport
+var data = dataImport 
 console.log("Data object", data)
 
 
