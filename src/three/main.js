@@ -3,7 +3,7 @@ import * as CANNON from 'cannon';
 
 
 import shipAssets from '/public/assets/Ship.gltf'
-// const shipAssets = fetch('../../public/assets/Ship.gltf');
+
 
 import * as MOVE from './move';
 import * as PERLINNOISE from './perlinNoise'
