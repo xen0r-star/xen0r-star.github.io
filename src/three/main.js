@@ -2,7 +2,9 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon';
 
 
-const shipAssets = "./assets/Ship.gltf"
+import shipAssets from '/public/assets/Ship.gltf'
+// const shipAssets = fetch('../../public/assets/Ship.gltf');
+
 import * as MOVE from './move';
 import * as PERLINNOISE from './perlinNoise'
 import { spawnCharacter } from './character';

@@ -55,18 +55,18 @@ module.exports = {
         rules: [
             { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
 
-            {
-                test: /\.(gltf)$/,
-                loader: "file-loader",
-                options: {
-                    name: '[name].[ext]',
-                    outputPath: 'assets'
-                }
-            },
+            // {
+            //     test: /\.(gltf)$/,
+            //     loader: "file-loader",
+            //     options: {
+            //         name: '[name].[ext]',
+            //         outputPath: 'assets'
+            //     }
+            // },
 
-            { test: /\.(?:ico|gif|png|jpg|jpeg)$/i, type: 'asset/resource' },
+            { test: /\.(?:ico|gif|png|jpg|jpeg|)$/i, type: 'asset/resource' },
 
-            { test: /\.(woff(2)?|eot|ttf|otf|svg|)$/, type: 'asset/inline' },
+            { test: /\.(woff(2)?|eot|ttf|otf|svg|gltf)$/, type: 'asset/inline' },
         ],
     },
 
