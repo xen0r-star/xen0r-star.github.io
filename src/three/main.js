@@ -1,18 +1,17 @@
 import * as THREE from 'three';
 import * as CANNON from 'cannon';
 
-
-import shipAssets from '/public/assets/Ship.gltf'
-
-
 import * as MOVE from './move';
 import * as PERLINNOISE from './perlinNoise'
 import { spawnCharacter } from './character';
 import * as STATS from './stats'
 
+import assets from './object.js';
+
 import dataImport from './data.json'
 var data = dataImport 
 console.log("Data object", data)
+
 
 
 // Rendue
@@ -88,7 +87,7 @@ data.worldSetting.physics.addBody(data.waterSetting.body);
 
 
 // Personnage
-data.worldSetting, data.characterSetting = spawnCharacter(data.worldSetting, data.characterSetting, shipAssets);
+data.worldSetting, data.characterSetting = spawnCharacter(data.worldSetting, data.characterSetting, assets.ship);
 MOVE.moveObject(data.characterSetting, data.keysMouve); // Mouvement personnage
 
 
@@ -114,7 +113,7 @@ document.addEventListener("keyup", function(event) {
         console.log("clear = ok")
         console.log(data.characterSetting)
 
-        data.worldSetting, data.characterSetting = spawnCharacter(data.worldSetting, data.characterSetting, shipAssets);
+        data.worldSetting, data.characterSetting = spawnCharacter(data.worldSetting, data.characterSetting, assets.ship);
     }
 });
 
