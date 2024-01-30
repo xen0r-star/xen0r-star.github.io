@@ -4,7 +4,7 @@
   "description": "Xen0r-star's porfolio",
   "main": "index.js",
   "scripts": {
-    "build": "webpack --config config/webpack.prod.js",
+    "build": "set NODE_ENV=local&&webpack --config config/webpack.prod.js",
     "dev": "webpack serve --config config/webpack.dev.js"
   },
   "keywords": [],

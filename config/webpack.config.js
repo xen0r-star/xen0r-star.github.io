@@ -30,6 +30,9 @@ module.exports = {
     },
 
     plugins: [
+        new webpack.EnvironmentPlugin({
+            NODE_ENV: 'local'
+        }),
         new HtmlWebpackPlugin({
             template: paths.src + '/index.html',
             templateParameters: {
