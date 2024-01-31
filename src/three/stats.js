@@ -38,22 +38,18 @@ export function start(perlinNoiseData) {
     return stats
 }
 
-// CharacterPosition :Position { x:855, y:87, z:780 }
-// CharacterRotation :Rotation { x:855, y:87, z:780 }
-// CharacterSpeed :Speed { x:0, y:0, z:-9.81 }
 
-// WaterPosition :Position { x:855, y:87, z:780 }
-// WaterRotation :Rotation { x:855, y:87, z:780 }
-// WaterSpeed :Speed { x:0, y:0, z:-9.81 } 
+function roundNumber(number) {
+    return Math.round(number*100)/100
+}
 
 export function update(character, water) {
-    document.getElementById('CharacterPosition').innerText = "Position " + character.id.position
-    document.getElementById('CharacterRotation').innerText = "Rotation " + character.id.rotation
-    document.getElementById('CharacterSpeed').innerText = "Speed " + character.velocity
+    document.getElementById('CharacterPosition').innerText = `Position { x: ${roundNumber(character.id.position.x)}, y: ${roundNumber(character.id.position.y)}, z: ${roundNumber(character.id.position.z)} }`
+    document.getElementById('CharacterRotation').innerText = `Rotation { x: ${roundNumber(character.id.rotation.x)}, y: ${roundNumber(character.id.rotation.y)}, z: ${roundNumber(character.id.rotation.z)} }`
+    document.getElementById('CharacterSpeed').innerText = `Speed { x :${roundNumber(character.velocity.x)}, y: ${roundNumber(character.velocity.y)}, z: ${roundNumber(character.velocity.z)} }`
     document.getElementById('WaterPosition').innerText = "Position "
     document.getElementById('WaterRotation').innerText = "Rotation "
     document.getElementById('WaterSpeed').innerText = "Speed "
-    console.log(character.id.position, character.id.rotation, character.velocity)
 }
 
 

@@ -4,7 +4,12 @@
   "description": "Xen0r-star's porfolio",
   "main": "index.js",
   "scripts": {
-    "build": "set NODE_ENV=local&&webpack --config config/webpack.prod.js",
+    "build-online": "set NODE_ENV=online&& webpack --config config/webpack.prod.js",
+    "build-local": "set NODE_ENV=local&& webpack --config config/webpack.prod.js",
+    "dev-online": "set NODE_ENV=online&& webpack serve --config config/webpack.dev.js",
+    "dev-local": "set NODE_ENV=local&& webpack serve --config config/webpack.dev.js",
+
+    "build": "webpack --config config/webpack.prod.js",
     "dev": "webpack serve --config config/webpack.dev.js"
   },
   "keywords": [],

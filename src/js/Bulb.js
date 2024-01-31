@@ -16,6 +16,7 @@ Bulb.addEventListener("click", () => {
             root.setProperty('--Color', '#ffffff');
             root.setProperty('--Element', '#ffffff');
             root.setProperty('--ColorBulbDash', '#00000000');
+            root.setProperty('--backgroundThree', '#040113');
         } else {
             BulbLight.setAttribute('fill', '#F9B810');
 
@@ -23,6 +24,7 @@ Bulb.addEventListener("click", () => {
             root.setProperty('--Color', '#000000');
             root.setProperty('--Element', '#000000');
             root.setProperty('--ColorBulbDash', '#000000');
+            root.setProperty('--backgroundThree', '#dcdcdc');
         }
     }
 });

@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin')
+var webpack = require('webpack');
 
 const path = require('path')
 const paths = require('./paths')
@@ -30,9 +31,10 @@ module.exports = {
     },
 
     plugins: [
-        new webpack.EnvironmentPlugin({
-            NODE_ENV: 'local'
+        new webpack.DefinePlugin({
+            NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'local')
         }),
+
         new HtmlWebpackPlugin({
             template: paths.src + '/index.html',
             templateParameters: {

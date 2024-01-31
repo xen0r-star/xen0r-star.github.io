@@ -1,20 +1,17 @@
-const express = require('express');
-
 let link = 'https://raw.githubusercontent.com/xen0r-star/xen0r-star.github.io/main'
 
-// import ship from '@public/assets/Ship.gltf';
+var shipLink = null
 
-
-if (process.env.NODE_ENV === 'local') {
-    console.log("on")
+if (NODE_ENV === 'online') {
+    shipLink = link + '/public/assets/Ship.gltf';
 } else {
-    console.log("off")
+    shipLink = require('@public/assets/Ship.gltf');
 }
 
-let ship = link + '/public/assets/Ship.gltf';
+
 
 const assets = {
-    ship: ship,
+    ship: shipLink,
 };
 
 export default assets;

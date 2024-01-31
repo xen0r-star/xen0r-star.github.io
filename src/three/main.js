@@ -9,18 +9,23 @@ import * as STATS from './stats'
 import assets from './object.js';
 
 import dataImport from './data.json'
-var data = dataImport 
+var data = dataImport
 console.log("Data object", data)
 
 
 
 // Rendue
-const renderer = new THREE.WebGLRenderer( { antialias : true } );
-renderer.setPixelRatio( window.devicePixelRatio  );
+const renderer = new THREE.WebGLRenderer({ antialias: true });
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.setSize(window.innerWidth, window.innerHeight);
 renderer.setClearColor(0xdcdcdc);
-renderer.shadowMap.enabled = true; 
+renderer.shadowMap.enabled = true;
 document.body.appendChild(renderer.domElement);
+
+window.addEventListener('resize', function () {
+    renderer.setSize(window.innerWidth, window.innerHeight);
+});
+
 
 
 // Scene
@@ -50,7 +55,7 @@ data.worldSetting.id.add(directionalLight);
 
 
 
-    
+
 data.waterSetting.geometry = new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y, 9, 9);
 
 const positions = data.waterSetting.geometry.attributes.position.array;
@@ -68,7 +73,7 @@ data.waterSetting.geometry.attributes.position.needsUpdate = true;
 
 data.waterSetting.material = new THREE.MeshStandardMaterial({ color: 0x34ebe5, transparent: false, opacity: 1 });
 data.waterSetting.id = new THREE.Mesh(data.waterSetting.geometry, data.waterSetting.material);
-data.waterSetting.id.receiveShadow = true; 
+data.waterSetting.id.receiveShadow = true;
 data.worldSetting.physics.castShadow = true;
 
 data.waterSetting.id.position.set(0, 0, 0);
@@ -92,12 +97,12 @@ MOVE.moveObject(data.characterSetting, data.keysMouve); // Mouvement personnage
 
 
 // Stat
-var stats =  STATS.start(perlinNoiseData)
+var stats = STATS.start(perlinNoiseData)
 
 
 
 
-document.addEventListener("keyup", function(event) {
+document.addEventListener("keyup", function (event) {
     if (event.key === "r" || event.key === "R") {
         data.worldSetting.id.remove(data.characterSetting.id)
         data.worldSetting.physics.removeBody(data.characterSetting.body)
