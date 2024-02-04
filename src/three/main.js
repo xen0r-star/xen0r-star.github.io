@@ -24,7 +24,7 @@ document.body.appendChild(renderer.domElement);
 
 window.addEventListener('resize', function () {
     renderer.setSize(window.innerWidth, window.innerHeight);
-});
+}); 
 
 
 
