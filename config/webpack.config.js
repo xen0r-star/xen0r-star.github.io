@@ -59,15 +59,8 @@ module.exports = {
     module: {
         rules: [
             { test: /\.js$/, exclude: /node_modules/, use: ['babel-loader'] },
-
-            // {
-            //     test: /\.(gltf)$/,
-            //     loader: "file-loader",
-            //     options: {
-            //         name: '[name].[ext]',
-            //         outputPath: 'assets'
-            //     }
-            // },
+            
+            { test: /\.(glsl|vs|fs|vert|frag)$/, exclude: /node_modules/, use: ['raw-loader', 'glslify-loader'] },
 
             { test: /\.(?:ico|gif|png|jpg|jpeg|)$/i, type: 'asset/resource' },
 

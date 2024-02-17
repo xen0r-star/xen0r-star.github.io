@@ -8,7 +8,6 @@
     "build-local": "set NODE_ENV=local&& webpack --config config/webpack.prod.js",
     "dev-online": "set NODE_ENV=online&& webpack serve --config config/webpack.dev.js",
     "dev-local": "set NODE_ENV=local&& webpack serve --config config/webpack.dev.js",
-
     "build": "webpack --config config/webpack.prod.js",
     "dev": "webpack serve --config config/webpack.dev.js"
   },
@@ -31,15 +30,18 @@
     "css-loader": "^6.8.1",
     "css-minimizer-webpack-plugin": "^5.0.1",
     "file-loader": "^6.2.0",
+    "glslify-loader": "^2.0.0",
     "html-webpack-plugin": "^5.5.3",
     "mini-css-extract-plugin": "^2.7.6",
     "postcss-loader": "^7.3.3",
+    "raw-loader": "^4.0.2",
     "sass-loader": "^13.3.2",
     "stats.js": "^0.17.0",
     "style-loader": "^3.3.3",
     "webpack": "^5.89.0",
     "webpack-cli": "^5.1.4",
     "webpack-dev-server": "^4.15.1",
+    "webpack-glsl-loader": "^1.0.1",
     "webpack-merge": "^5.10.0"
   }
 }

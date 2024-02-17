@@ -2,15 +2,21 @@ import * as THREE from 'three';
 import * as CANNON from 'cannon';
 
 import * as MOVE from './move';
-// import * as PERLINNOISE from './perlinNoise'
+import * as PERLINNOISE from './perlinNoise'
 import { spawnCharacter } from './character';
 import * as STATS from './stats'
 
+// Object
 import assets from './object.js';
 
+// Data object
 import dataImport from './data.json'
 var data = dataImport
 console.log("Data object", data)
+
+// Shader
+import oceanVertexShader from './shader/ocean/vertexShader.glsl'
+import oceanFragmentShader from './shader/ocean/fragmentShader.glsl'
 
 
 
@@ -54,39 +60,45 @@ directionalLight.position.set(5, 5, 5);
 data.worldSetting.id.add(directionalLight);
 
 
+
+
 // Water
-data.worldSetting, data.waterSetting = spawnCharacter(data.worldSetting, data.waterSetting, assets.water);
+var oceanMaterial = new THREE.ShaderMaterial({
+    uniforms: {
+        color1: { value: new THREE.Vector3(1.0, 0.0, 0.0) }, // Rouge
+        color2: { value: new THREE.Vector3(0.0, 0.0, 1.0) }, // Bleu
+        fresnelPower: { value: 1.5 } // Puissance de l'effet Fresnel
+    },
+    vertexShader: oceanVertexShader,
+    fragmentShader: oceanFragmentShader
+});
 
-// data.waterSetting.geometry = new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y, 9, 9);
+data.waterSetting.geometry = new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y, 9, 9);
 
-// const positions = data.waterSetting.geometry.attributes.position.array;
-// const perlinNoiseData = PERLINNOISE.Noise(data.waterSetting.waveSize.x, data.waterSetting.waveSize.y);
+const positions = data.waterSetting.geometry.attributes.position.array;
+const perlinNoiseData = PERLINNOISE.Noise(data.waterSetting.waveSize.x, data.waterSetting.waveSize.y);
 
-// for (let i = 0; i < (positions.length / 3); i += 3) {
+for (let i = 0; i < (positions.length / 3); i += 3) {
 
-//     const ligne = Math.floor(i / perlinNoiseData.length);
-//     const colonne = i % perlinNoiseData.length;
-//     positions[i + 2] = perlinNoiseData[ligne][colonne];
-// }
+    const ligne = Math.floor(i / perlinNoiseData.length);
+    const colonne = i % perlinNoiseData.length;
+    positions[i + 2] = perlinNoiseData[ligne][colonne];
+}
 
-// data.waterSetting.geometry.attributes.position.needsUpdate = true;
+data.waterSetting.geometry.attributes.position.needsUpdate = true;
 
+data.waterSetting.id = new THREE.Mesh(data.waterSetting.geometry, oceanMaterial);
+data.waterSetting.id.receiveShadow = true;
+data.worldSetting.physics.castShadow = true;
 
-// data.waterSetting.material = new THREE.MeshStandardMaterial({ color: 0x34ebe5, transparent: false, opacity: 1 });
-// data.waterSetting.id = new THREE.Mesh(data.waterSetting.geometry, data.waterSetting.material);
-// data.waterSetting.id.receiveShadow = true;
-// data.worldSetting.physics.castShadow = true;
+data.waterSetting.id.position.set(0, 0, 0);
+data.worldSetting.id.add(data.waterSetting.id);
 
-// data.waterSetting.id.position.set(0, 0, 0);
-// data.worldSetting.id.add(data.waterSetting.id);
-
-
-
-// Cannon.js
-// data.waterSetting.shape = new CANNON.Box(new CANNON.Vec3(data.waterSetting.size.x / 2, data.waterSetting.size.y / 2, data.waterSetting.size.z / 2));
-// data.waterSetting.body = new CANNON.Body({ mass: 0, shape: data.waterSetting.shape });
-// data.waterSetting.body.position.copy(data.waterSetting.id.position); // Assurez-vous que la position du corps correspond à celle du maillage
-// data.worldSetting.physics.addBody(data.waterSetting.body);
+// Water - Cannon.js
+data.waterSetting.shape = new CANNON.Box(new CANNON.Vec3(data.waterSetting.size.x / 2, data.waterSetting.size.y / 2, data.waterSetting.size.z / 2));
+data.waterSetting.body = new CANNON.Body({ mass: data.waterSetting.mass, shape: data.waterSetting.shape });
+data.waterSetting.body.position.copy(data.waterSetting.id.position); // Assurez-vous que la position du corps correspond à celle du maillage
+data.worldSetting.physics.addBody(data.waterSetting.body);
 
 
 
