@@ -28,8 +28,6 @@
 
     "waterSetting": {
         "id": null,
-        "geometry": null,
-        "material": null,
         "shape": null,
         "body": null,
 
@@ -38,11 +36,17 @@
             "y": 10,
             "z": 5
         },
-        "waveSize": {
-            "x": 100,
-            "y": 100,
-            "z": 5
-        }
+        "rotate": {
+            "x": 1.57,
+            "y": 1.57,
+            "z": 0
+        },
+        "spawn": {
+            "x": 0,
+            "y": 0,
+            "z": 0
+        },
+        "mass": 0
     },
 
 
