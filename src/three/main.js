@@ -70,7 +70,7 @@ var oceanMaterial = new THREE.ShaderMaterial({
         fresnelPower: { value: 1.5 } // Puissance de l'effet Fresnel
     },
     vertexShader: oceanVertexShader,
-    fragmentShader: oceanFragmentShader
+    fragmentShader: oceanFragmentShader 
 });
 
 data.waterSetting.geometry = new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y, 9, 9);
