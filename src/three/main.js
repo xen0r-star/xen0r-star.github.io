@@ -88,7 +88,7 @@ var oceanMaterial = new THREE.ShaderMaterial({
 data.waterSetting.id = new THREE.Mesh(
     new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y), oceanMaterial
 );
-data.waterSetting.id.position.set(0, 0, 0);
+data.waterSetting.id.position.set(data.waterSetting.spawn.x, data.waterSetting.spawn.y, data.waterSetting.spawn.z);
 
 data.worldSetting.id.add(data.waterSetting.id);
 data.waterSetting.shape = new CANNON.Box(new CANNON.Vec3(data.waterSetting.size.x / 2, data.waterSetting.size.y / 2, data.waterSetting.size.z / 2));
@@ -116,8 +116,6 @@ const perlinNoiseData = PERLINNOISE.Noise(data.waterSetting.waveSize.x, data.wat
 // data.worldSetting.id.add(data.waterSetting.id);
 
 // // Water - Cannon.js
-
-
 
 
 
