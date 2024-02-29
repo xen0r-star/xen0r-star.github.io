@@ -18,6 +18,8 @@ console.log("Data object", data)
 import oceanVertexShader from './shader/ocean/vertexShader.glsl'
 import oceanFragmentShader from './shader/ocean/fragmentShader.glsl'
 
+var clock = new THREE.Clock();
+
 
 
 // Rendue
@@ -61,44 +63,59 @@ data.worldSetting.id.add(directionalLight);
 
 
 
+var timeUniform = {
+	iGlobalTime: {
+		type: 'f',
+		value: 0.1
+	},
+	iResolution: {
+		type: 'v2',
+		value: new THREE.Vector2()
+	}
+};
+
+timeUniform.iResolution.value.x = window.innerWidth;
+timeUniform.iResolution.value.y = window.innerHeight;
 
 // Water
 var oceanMaterial = new THREE.ShaderMaterial({
-    uniforms: {
-        color1: { value: new THREE.Vector3(1.0, 0.0, 0.0) }, // Rouge
-        color2: { value: new THREE.Vector3(0.0, 0.0, 1.0) }, // Bleu
-        fresnelPower: { value: 1.5 } // Puissance de l'effet Fresnel
-    },
+    uniforms: timeUniform,
     vertexShader: oceanVertexShader,
     fragmentShader: oceanFragmentShader 
 });
 
-data.waterSetting.geometry = new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y, 9, 9);
-
-const positions = data.waterSetting.geometry.attributes.position.array;
-const perlinNoiseData = PERLINNOISE.Noise(data.waterSetting.waveSize.x, data.waterSetting.waveSize.y);
-
-for (let i = 0; i < (positions.length / 3); i += 3) {
-
-    const ligne = Math.floor(i / perlinNoiseData.length);
-    const colonne = i % perlinNoiseData.length;
-    positions[i + 2] = perlinNoiseData[ligne][colonne];
-}
-
-data.waterSetting.geometry.attributes.position.needsUpdate = true;
-
-data.waterSetting.id = new THREE.Mesh(data.waterSetting.geometry, oceanMaterial);
-data.waterSetting.id.receiveShadow = true;
-data.worldSetting.physics.castShadow = true;
-
+// data.waterSetting.geometry = new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y, 9, 9);
+data.waterSetting.id = new THREE.Mesh(
+    new THREE.PlaneGeometry(data.waterSetting.size.x, data.waterSetting.size.y), oceanMaterial
+);
 data.waterSetting.id.position.set(0, 0, 0);
-data.worldSetting.id.add(data.waterSetting.id);
 
-// Water - Cannon.js
+data.worldSetting.id.add(data.waterSetting.id);
 data.waterSetting.shape = new CANNON.Box(new CANNON.Vec3(data.waterSetting.size.x / 2, data.waterSetting.size.y / 2, data.waterSetting.size.z / 2));
 data.waterSetting.body = new CANNON.Body({ mass: data.waterSetting.mass, shape: data.waterSetting.shape });
 data.waterSetting.body.position.copy(data.waterSetting.id.position); // Assurez-vous que la position du corps correspond à celle du maillage
 data.worldSetting.physics.addBody(data.waterSetting.body);
+
+
+// const positions = data.waterSetting.geometry.attributes.position.array;
+const perlinNoiseData = PERLINNOISE.Noise(data.waterSetting.waveSize.x, data.waterSetting.waveSize.y);
+
+// for (let i = 0; i < (positions.length / 3); i += 3) {
+
+//     const ligne = Math.floor(i / perlinNoiseData.length);
+//     const colonne = i % perlinNoiseData.length;
+//     positions[i + 2] = perlinNoiseData[ligne][colonne];
+// }
+
+// data.waterSetting.geometry.attributes.position.needsUpdate = true;
+
+// data.waterSetting.id = new THREE.Mesh(data.waterSetting.geometry, oceanMaterial);
+// data.waterSetting.id.receiveShadow = true;
+// data.worldSetting.physics.castShadow = true;
+
+// data.worldSetting.id.add(data.waterSetting.id);
+
+// // Water - Cannon.js
 
 
 
@@ -137,12 +154,13 @@ document.addEventListener("keyup", function (event) {
 
 
 
-
 // Boucle par frame
 const animate = () => {
     requestAnimationFrame(animate);
 
     stats.begin();
+
+    timeUniform.iGlobalTime.value += clock.getDelta();
 
     if (data.worldSetting.load.charged >= data.worldSetting.load.full && data.characterSetting.id != null) {
 
