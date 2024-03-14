@@ -1,5 +1,5 @@
 import Stats from 'stats.js'
-
+ 
 
 export function start(perlinNoiseData) {
     var stats = new Stats();
