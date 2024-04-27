@@ -3,7 +3,8 @@ import { Canvas } from "@react-three/fiber";
 import { Physics } from "@react-three/cannon";
 
 import Boat from "./boat";
-import Environment from "./environment";
+// import Environment from "./environment";
+import Island from "./island";
 import './App.css'
 
 
@@ -16,7 +17,7 @@ const App = () => {
                     <directionalLight position={[0, 0, 2]} intensity={1} />
                     <ambientLight intensity={1} />
                     <Physics>
-                        <Environment />
+                        <Island />
                         <Boat />
                     </Physics>
                 </Suspense>

@@ -18,7 +18,7 @@ const Boat = () => {
         api.applyForce([0, 0, 0], [0, 0, 0]);
     };
 
-    const handleKeyDown = (e) => {
+    const handleKeyDown = (e: KeyboardEvent) => {
         switch (e.key.toLowerCase()) {
             case "w":
                 moveForward();
@@ -31,7 +31,8 @@ const Boat = () => {
         }
     };
 
-    const handleKeyUp = (e) => {
+
+    const handleKeyUp = (e: KeyboardEvent) => {
         if (e.key.toLowerCase() === "w" || e.key.toLowerCase() === "s") {
             stopMoving();
         }
