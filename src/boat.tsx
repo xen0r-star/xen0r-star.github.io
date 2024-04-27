@@ -31,7 +31,6 @@ const Boat = () => {
         }
     };
 
-
     const handleKeyUp = (e: KeyboardEvent) => {
         if (e.key.toLowerCase() === "w" || e.key.toLowerCase() === "s") {
             stopMoving();
