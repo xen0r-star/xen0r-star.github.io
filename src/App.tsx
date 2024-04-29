@@ -4,7 +4,7 @@ import { Physics } from "@react-three/cannon";
 
 import Boat from "./boat";
 // import Environment from "./environment";
-import Island from "./island";
+import Water from "./water";
 import './App.css'
 
 
@@ -17,7 +17,7 @@ const App = () => {
                     <directionalLight position={[0, 0, 2]} intensity={1} />
                     <ambientLight intensity={1} />
                     <Physics>
-                        <Island />
+                        <Water />
                         <Boat />
                     </Physics>
                 </Suspense>
